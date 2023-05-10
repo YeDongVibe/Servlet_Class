@@ -44,13 +44,8 @@ public class MyServlet04 extends HttpServlet {
 		out.println("<td>4</td><td>중국</td><td>베이징</td><td>2100만</td>");
 		out.println("</tr>");
 		
-		out.println("</tr>");
 		out.println("</table>");
-		
-		
-			
-				
-			
+	
 		
 	}
 }
