@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//@WebServlet("~~")이라고 치면 웹페이지에 hosting된다.
 @WebServlet("/myservlet02")
 public class MyServlet02 extends HttpServlet {
 
