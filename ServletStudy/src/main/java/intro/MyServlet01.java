@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MyServlet01 extends HttpServlet {
-
+	//HttpServlet이라는 class에서 상속을 받아야지 Hosting 및 구현이 가능.
 	/**
 	 * 
 	 */
@@ -16,7 +16,7 @@ public class MyServlet01 extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//service : 이 매서드를 호출하여 실행. 즉 메인class가 없어도 실행이 가능.
 		System.out.println("MyServlet01");
 	}
 }
