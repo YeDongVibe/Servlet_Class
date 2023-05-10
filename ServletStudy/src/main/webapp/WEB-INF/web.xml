@@ -12,6 +12,7 @@
 	<servlet-mapping>
 	
 	<servlet-name>MyFirstServlet01</servlet-name>
+	<!-- url-pattern : 실제로 호스팅하는 주소 : localhost:8080/프로젝트명/url-pattern -->
 	<url-pattern>/myservlet01</url-pattern>
 	
 	</servlet-mapping>
