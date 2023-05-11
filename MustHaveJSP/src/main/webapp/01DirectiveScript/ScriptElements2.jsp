@@ -21,6 +21,7 @@ int num2 = Integer.parseInt(request.getParameter("num2"));
 int result = add(10,20);
 int res = num1 + num2;
 
+
 %>
 덧셈 결과 1 : <%= result  %> <br />
 덧셈 결과 2 : <%= add(30,40) %> <br />
