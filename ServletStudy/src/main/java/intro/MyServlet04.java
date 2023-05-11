@@ -22,8 +22,8 @@ public class MyServlet04 extends HttpServlet {
 		resp.setContentType("text/html; charset = utf-8");
 		PrintWriter out = resp.getWriter();
 		
-		out.println("<table border = \"1\">");
-		//out.println("<table>");
+		//out.println("<table border = \"1\">");
+		out.println("<table>");
 		out.println("<tr>");
 		out.println("<td>번호</td><td>나라</td>><td>수도</td><td>인구</td>");
 		out.println("</tr>");
