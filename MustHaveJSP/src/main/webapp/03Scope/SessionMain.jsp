@@ -6,6 +6,7 @@
 ArrayList<String> lists = new ArrayList<String>();
 lists.add("리스트");
 lists.add("컬렉션");
+//lists라는 이름으로 배열을 저장함.
 session.setAttribute("lists", lists);
 
 %>
