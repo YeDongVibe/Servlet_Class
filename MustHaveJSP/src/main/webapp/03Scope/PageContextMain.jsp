@@ -5,7 +5,7 @@
 // 속성 저장
 pageContext.setAttribute("pageInteger", 1000); //pageInteger이라는 이름으로 100이라는 값을 pageContext에 저장.
 pageContext.setAttribute("pageString", "페이지 영역의 문자열");//pageString이라는 이름으로 "페이지 ~~ 문자열"이라는 문자열을 pageContext에 저장.
-pageContext.setAttribute("pagePerson", new Person("한석봉", 99)); //pagePerson이라는 이름으로 new Person이라는 객체를 pageContext에 저장.
+pageContext.setAttribute("pagePerson", new Person("한석봉", 99)); //pagePerson이라는 이름으로 new Person이라는 객체를 pageContext에 저장. : 키, 값(객체 형태는 무조건 object) 세투세투
 %>
 <!DOCTYPE html>
 <html>
