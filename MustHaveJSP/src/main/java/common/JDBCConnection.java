@@ -52,9 +52,8 @@ public class JDBCConnection {
 			out.write("<tr>");
 			out.write("<td>title</td><td>content</td><td>id</td><td>postdate</td>");
 			out.write("</tr>");
-			out.println();
-			out.println();
-			out.println();
+			out.println("<br />");
+
 			
 
 			rs1 = st.executeQuery("select * from board");
