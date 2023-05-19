@@ -8,18 +8,18 @@ import java.sql.Statement;
 
 import javax.servlet.jsp.JspWriter;
 
-public class JDBCConnection {
+public class H2Connection {
 
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/musthave";
+	private String driver = "org.h2.Driver";
+	private String url = "jdbc:h2:tcp://localhost/~/musthave";
 	private String id = "musthave";
 	private String pw = "1234";
 	
-	public JDBCConnection() {
+	public H2Connection() {
 		//기본생성자 만들기
 	}
 
-	public JDBCConnection(String driver, String url, String id, String pw) {
+	public H2Connection(String driver, String url, String id, String pw) {
 		this.driver = driver;
 		this.url = url;
 		this.id = id;
@@ -108,8 +108,8 @@ public class JDBCConnection {
 
 	
 	public static void main(String[] args) throws Exception {
-		JDBCConnection jdbcCon = new JDBCConnection();
-		Connection con = jdbcCon.getConnection();
+		H2Connection h2Con = new H2Connection();
+		Connection con = h2Con.getConnection();
 		
 		con.close();
 
