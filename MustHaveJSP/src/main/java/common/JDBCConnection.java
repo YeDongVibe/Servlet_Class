@@ -29,7 +29,7 @@ public class JDBCConnection {
 			out.println("<table border = \"1\">");
 			//out.write("<table>");
 			out.write("<tr>");
-			out.write("<td>id</td><td>pass</td><td>name</td><td>regidate</td>");
+			out.write("<td align=center>id</td><td align=center>pass</td><td align=center>name</td><td align=center>regidate</td>");
 			out.write("</tr>");
 			
 			st = con.createStatement();
@@ -38,10 +38,10 @@ public class JDBCConnection {
 			while(rs.next()) {
 
 				out.write("<tr>");
-				out.write("<td>"); out.write(rs.getString("id")); out.write("</td>");
-				out.write("<td>"); out.write(rs.getString("pass")); out.write("</td>");
-				out.write("<td>"); out.write(rs.getString("name")); out.write("</td>");
-				out.write("<td>"); out.write(rs.getString("regidate")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs.getString("id")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs.getString("pass")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs.getString("name")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs.getString("regidate")); out.write("</td>");
 				out.write("</tr>");
 				
 			}
@@ -50,7 +50,7 @@ public class JDBCConnection {
 			out.println("<table border = \"1\">");
 			//out.write("<table>");
 			out.write("<tr>");
-			out.write("<td>title</td><td>content</td><td>id</td><td>postdate</td>");
+			out.write("<td align=center>title</td><td align=center>content</td><td align=center>id</td><td align=center>postdate</td>");
 			out.write("</tr>");
 			out.println("<br />");
 
@@ -61,10 +61,10 @@ public class JDBCConnection {
 			while(rs1.next()) {
 
 				out.write("<tr>");
-				out.write("<td>"); out.write(rs1.getString("title")); out.write("</td>");
-				out.write("<td>"); out.write(rs1.getString("content")); out.write("</td>");
-				out.write("<td>"); out.write(rs1.getString("id")); out.write("</td>");
-				out.write("<td>"); out.write(rs1.getString("postdate")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs1.getString("title")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs1.getString("content")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs1.getString("id")); out.write("</td>");
+				out.write("<td align=center>"); out.write(rs1.getString("postdate")); out.write("</td>");
 				out.write("</tr>");
 			}
 			out.write("</table>");
