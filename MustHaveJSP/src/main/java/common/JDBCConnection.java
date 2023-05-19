@@ -23,9 +23,11 @@ public class JDBCConnection {
 	public void writeMemberToTable(Connection con, JspWriter out) {
 		Statement st = null;
 		ResultSet rs = null;
+		ResultSet rs1 = null;
 		
 		try {
-			out.write("<table>");
+			out.println("<table border = \"1\">");
+			//out.write("<table>");
 			out.write("<tr>");
 			out.write("<td>id</td><td>pass</td><td>name</td><td>regidate</td>");
 			out.write("</tr>");
@@ -34,13 +36,35 @@ public class JDBCConnection {
 			rs = st.executeQuery("select * from member");
 			
 			while(rs.next()) {
+
 				out.write("<tr>");
-				out.write("<td>"); out.write("id"); out.write("</td>");
-				out.write("<td>"); out.write("pw"); out.write("</td>");
-				out.write("<td>"); out.write("name"); out.write("</td>");
-				out.write("<td>"); out.write("regidate"); out.write("</td>");
+				out.write("<td>"); out.write(rs.getString("id")); out.write("</td>");
+				out.write("<td>"); out.write(rs.getString("pass")); out.write("</td>");
+				out.write("<td>"); out.write(rs.getString("name")); out.write("</td>");
+				out.write("<td>"); out.write(rs.getString("regidate")); out.write("</td>");
 				out.write("</tr>");
 				
+			}
+			out.write("</table>");
+
+			out.println("<table border = \"1\">");
+			//out.write("<table>");
+			out.write("<tr>");
+			out.write("<td>title</td><td>content</td><td>id</td><td>regidate</td>");
+			out.write("</tr>");
+			out.println();
+			
+
+			rs1 = st.executeQuery("select * from board");
+			
+			while(rs1.next()) {
+
+				out.write("<tr>");
+				out.write("<td>"); out.write(rs1.getString("title")); out.write("</td>");
+				out.write("<td>"); out.write(rs1.getString("content")); out.write("</td>");
+				out.write("<td>"); out.write(rs1.getString("id")); out.write("</td>");
+				out.write("<td>"); out.write(rs1.getString("regidate")); out.write("</td>");
+				out.write("</tr>");
 			}
 			out.write("</table>");
 			
@@ -50,6 +74,8 @@ public class JDBCConnection {
 			try {
 				if (rs != null)
 					rs.close();
+				if (rs1 != null)
+					rs1.close();
 				if (st != null)
 					st.close();
 				if (con != null)
@@ -59,15 +85,14 @@ public class JDBCConnection {
 			}
 		}	
 	}
+
 	
 	public static void main(String[] args) throws Exception {
 		JDBCConnection jdbcCon = new JDBCConnection();
 		Connection con = jdbcCon.getConnection();
+		
+		con.close();
 
-		
-		jdbcCon.writeMemberToTable(con, rs);		
-		
-//		System.out.println(String.format("%s. %s, %s"));
 	}
 	
 
