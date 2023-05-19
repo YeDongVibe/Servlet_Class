@@ -50,8 +50,10 @@ public class JDBCConnection {
 			out.println("<table border = \"1\">");
 			//out.write("<table>");
 			out.write("<tr>");
-			out.write("<td>title</td><td>content</td><td>id</td><td>regidate</td>");
+			out.write("<td>title</td><td>content</td><td>id</td><td>postdate</td>");
 			out.write("</tr>");
+			out.println();
+			out.println();
 			out.println();
 			
 
@@ -63,7 +65,7 @@ public class JDBCConnection {
 				out.write("<td>"); out.write(rs1.getString("title")); out.write("</td>");
 				out.write("<td>"); out.write(rs1.getString("content")); out.write("</td>");
 				out.write("<td>"); out.write(rs1.getString("id")); out.write("</td>");
-				out.write("<td>"); out.write(rs1.getString("regidate")); out.write("</td>");
+				out.write("<td>"); out.write(rs1.getString("postdate")); out.write("</td>");
 				out.write("</tr>");
 			}
 			out.write("</table>");
