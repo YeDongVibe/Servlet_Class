@@ -60,9 +60,15 @@ public class JDBCConnection {
 		}	
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws Exception {
+		JDBCConnection jdbcCon = new JDBCConnection();
+		Connection con = jdbcCon.getConnection();
 
+		
+		jdbcCon.writeMemberToTable(con, rs);		
+		
+//		System.out.println(String.format("%s. %s, %s"));
 	}
+	
 
 }
