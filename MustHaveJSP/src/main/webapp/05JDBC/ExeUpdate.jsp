@@ -22,9 +22,19 @@ Connection con = jdbc.getConnection();
 	}
 
 
-String id = "test1";
-String pass = "1111";
-String name = "테스트1회원";
+// String id = "test1";
+// String pass = "1111";
+// String name = "테스트1회원";
+
+String id = request.getParameter("id");
+String pass = request.getParameter("pass");
+String name = request.getParameter("name");
+
+if(id == null) {
+	out.println("Fail");
+	return;
+}
+
 
 String sql = "INSERT INTO member (id,pass,name) values (?,?,?)";
 PreparedStatement psmt = con.prepareStatement(sql);
