@@ -34,9 +34,17 @@ public class JDBCConnection {
 		}
 		
 	}
-	public Connection getConnection() throws Exception {
-		Class.forName(driver);
-		return DriverManager.getConnection(url, id, pw);
+	public Connection getConnection() {
+		
+		try {
+			Class.forName(driver);
+			return DriverManager.getConnection(url, id, pw);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 	
 	public void writeMemberToTable(Connection con, JspWriter out) {
