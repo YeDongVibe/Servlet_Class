@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import common.JDBCConnection;
 
 public class MemberDAO extends JDBCConnection {
-	
-	//default 생성자 만들기
-	public MemberDAO() {}
-	
-	
+
+	// default 생성자 만들기
+	public MemberDAO() {
+	}
+
+	// executeQuery문 사용
 	// 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
 	public MemberDAO(String drv, String url, String id, String pw) {
 		super(drv, url, id, pw);
@@ -26,13 +27,13 @@ public class MemberDAO extends JDBCConnection {
 		String query = "SELECT * FROM member WHERE id=? AND pass=?"; // 쿼리문 템플릿
 
 		Connection con = getConnection();
-		if(con == null) {
+		if (con == null) {
 			return null;
 		}
-		
+
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			// 쿼리 실행
 			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
@@ -50,39 +51,40 @@ public class MemberDAO extends JDBCConnection {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-				try {
-					if(rs!= null) rs.close();
-					if(psmt!= null)psmt.close();
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (psmt != null)
+					psmt.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 
 		return dto; // DTO 객체 반환
 	}
-	
 
-  public ArrayList<MemberDTO> getAllMemberDTOs () {
+	public ArrayList<MemberDTO> getAllMemberDTOs() {
 
 		Connection con = getConnection();
-		if(con == null) {
+		if (con == null) {
 			return null;
 		}
-		
+
 		Statement st = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<MemberDTO> list = null;
-		
+
 		try {
 			// 쿼리 실행
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT * FROM member");
-	
+
 			list = new ArrayList<>();
 
 			// 결과 처리
@@ -93,37 +95,132 @@ public class MemberDAO extends JDBCConnection {
 				dto.setPass(rs.getString("pass"));
 				dto.setName(rs.getString(3));
 				dto.setRegidate(rs.getString(4));
-				
+
 				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-				try {
-					if(rs!= null) rs.close();
-					if(st!= null) st.close();
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (st != null)
+					st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 
-		return list; 
-}
+		return list;
+	}
 
-
-	
+	// executeUpdate 사용
 	public int insertMemberDTO(MemberDTO member) {
-		return 1;
-		
+
+		String query = "insert into member (id, pass, name) values (?,?,?)";
+
+		Connection con = getConnection();
+		if (con == null) {
+			return 0;
+		}
+
+		PreparedStatement psmt = null;
+		int ret = 0;
+
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, member.getId()); // 쿼리문의 첫 번째 인파라미터에 값 설정
+			psmt.setString(2, member.getPass()); // 쿼리문의 두 번째 인파라미터에 값 설정
+			psmt.setString(3, member.getName()); // 쿼리문의 두 번째 인파라미터에 값 설정
+			ret = psmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null)
+					psmt.close();
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		return ret; // DTO 객체 반환
 	}
-	public int updteMemberDTO (MemberDTO member) {
-		return 1;
+
+	public int updateMemberDTO(MemberDTO member) {
+		String query = "Update member set pass=?, name=? where id = ?";
+
+		Connection con = getConnection();
+		if (con == null) {
+			return 0;
+		}
+
+		PreparedStatement psmt = null;
+		int ret = 0;
+
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, member.getPass()); // 쿼리문의 첫 번째 인파라미터에 값 설정
+			psmt.setString(2, member.getName()); // 쿼리문의 두 번째 인파라미터에 값 설정
+			psmt.setString(3, member.getId()); // 쿼리문의 두 번째 인파라미터에 값 설정
+			ret = psmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null)
+					psmt.close();
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		return ret; // DTO 객체 반환
+
 	}
+
 	public int deleteMemberDTO(String uid) {
-		return 1;
+		String query = "delete from member where id = ?";
+
+		Connection con = getConnection();
+		if (con == null) {
+			return 0;
+		}
+
+		PreparedStatement psmt = null;
+		int ret = 0;
+
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, uid); // 쿼리문의 첫 번째 인파라미터에 값 설정
+			ret = psmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null)
+					psmt.close();
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		return ret; // DTO 객체 반환
 	}
 
 }
