@@ -2,57 +2,53 @@ package common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
+
+import javax.servlet.ServletContext;
 
 public class JDBCConnect {
 
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/musthave";
-	private String id = "musthave";
-	private String pw = "1234";
+	private String driver;
+	private String url;
+	private String id;
+	private String pw;
 
-	public Connection getConnection() throws Exception {
-		Class.forName(driver);
-		return DriverManager.getConnection(url, id, pw);
+	public JDBCConnect() {
+		driver = "com.mysql.cj.jdbc.Driver";
+		url = "jdbc:mysql://localhost:3306/musthave";
+		id = "musthave";
+		pw = "1234";
 	}
 
-	public static void main(String[] args) throws Exception {
-		JDBCConnect jdbcConnect = new JDBCConnect();
-		Connection con = jdbcConnect.getConnection();
+	public JDBCConnect(String driver, String url, String id, String pw) {
+		this.driver = driver;
+		this.url = url;
+		this.id = id;
+		this.pw = pw;
+	}
 
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery("select * from board");
+	public JDBCConnect(ServletContext app) {
+		driver = app.getInitParameter("MySQLDriver");
+		url = app.getInitParameter("MySQLURL");
+		id = app.getInitParameter("MySQLId");
+		pw = app.getInitParameter("MySQLPw");
+	}
 
+	public Connection getConnection() {
 		try {
-			while (rs.next()) {
-				System.out.println(String.format("%s. %s, %s", rs.getString("title"), rs.getString("content"),
-						rs.getString("id")));
-			}
-			System.out.println();
-			
-			ResultSet rs1 = st.executeQuery("select * from member");
-
-			while (rs1.next()) {
-				System.out.println(
-						String.format("%s. %s, %s", rs1.getString("id"), rs1.getString("pass"), rs1.getString("name")));
-			}
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, id, pw);
+			return con;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		catch (SQLException e) {
-			// TODO: handle exception
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (rs1 != null)
-				rs1.close();
-			if (st != null)
-				st.close();
-		}
-
-		con.close();
-
+		return null;
 	}
 
+	public void closeConnection(Connection con) {
+		try {
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
