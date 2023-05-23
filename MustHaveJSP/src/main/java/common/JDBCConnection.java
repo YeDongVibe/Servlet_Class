@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspWriter;
 
 public class JDBCConnection {
@@ -23,17 +24,15 @@ public class JDBCConnection {
 		this.driver = driver;
 		this.url = url;
 		this.id = id;
-		this.pw = pw;
-		
-		try {
-			Class.forName(driver);
-
-			Connection con = DriverManager.getConnection(url, id, pw);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
+		this.pw = pw;	
 	}
+	public JDBCConnection(ServletContext application) {
+		driver = application.getInitParameter("MySQLDriver");
+		url = application.getInitParameter("MySQLURL");
+		id = application.getInitParameter("MySQLId");
+		pw = application.getInitParameter("MySQLPw");
+	}
+
 	public Connection getConnection() {
 		
 		try {
@@ -45,6 +44,14 @@ public class JDBCConnection {
 		}
 		return null;
 
+	}
+	public void closeConnection(Connection con) {
+		try {
+			if(con !=null) con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void writeMemberToTable(Connection con, JspWriter out) {

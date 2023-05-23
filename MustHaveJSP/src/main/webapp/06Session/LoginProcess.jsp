@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@ page import="membership.MemberDTO"%>
 <%@ page import="membership.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,15 +9,16 @@ String userId = request.getParameter("user_id");
 String userPwd = request.getParameter("user_pw");  
 
 // web.xml에서 가져온 데이터베이스 연결 정보
-String oracleDriver = application.getInitParameter("OracleDriver");
-String oracleURL = application.getInitParameter("OracleURL");
-String oracleId = application.getInitParameter("OracleId");
-String oraclePwd = application.getInitParameter("OraclePwd");
+String MySQLDriver = application.getInitParameter("MySQLDriver");
+String MySQLURL = application.getInitParameter("MySQLURL");
+String MySQLId = application.getInitParameter("MySQLId");
+String MySQLPwd = application.getInitParameter("MySQLPw");
 
 // 회원 테이블 DAO를 통해 회원 정보 DTO 획득
-MemberDAO dao = new MemberDAO(oracleDriver, oracleURL, oracleId, oraclePwd);
+MemberDAO dao = new MemberDAO(MySQLDriver,MySQLURL, MySQLId, MySQLPwd);
+Connection con = dao.getConnection();
 MemberDTO memberDTO = dao.getMemberDTO(userId, userPwd);
-dao.close();
+dao.closeConnection(con);
 
 // 로그인 성공 여부에 따른 처리
 if (memberDTO.getId() != null) {
