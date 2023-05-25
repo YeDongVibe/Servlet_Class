@@ -36,6 +36,11 @@
 	  <fmt:timeZone value="America/Chicago">
 	  	<fmt:formatDate value="${ today }" type ="both" dateStyle="full" timeStyle="full"/> <br />
 	  </fmt:timeZone>
-
+	  <fmt:timeZone value="Asia/Seoul">
+	  	<fmt:formatDate value="${ today }" type ="both" dateStyle="full" timeStyle="full"/> <br />
+	  </fmt:timeZone>
+	  <fmt:timeZone value="Asia/Tokyo">
+	  	<fmt:formatDate value="${ today }" type ="both" dateStyle="full" timeStyle="full"/> <br />
+	  </fmt:timeZone>
 </body>
 </html>
