@@ -63,9 +63,7 @@ public class BoardDAO extends JDBCConnection {
         PreparedStatement psmt = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM ( "
-        				+"	SELECT Tb.*, ROWNUM rNUM FROM ("
-        				+"		SEWLECT * FROM board";
+        String query = "select * from country limit 0,10";
         if (map.get("searchWord") != null) {
             query += " WHERE " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
