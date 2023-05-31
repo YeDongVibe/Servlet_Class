@@ -58,7 +58,9 @@ public class MemberAuth extends HttpServlet {
 			}
 		}
 		req.getRequestDispatcher("/13Servlet/MemberAuth.jsp").forward(req, resp);
-
+		
+		//web-INF는 내부적으로 사용하는 파일이라서 외부에서 사용불가
+		//req.getRequestDispatcher("/WEB-INF/view/MemberAuthView.jsp").forward(req, resp);
 	}
 
 //	@Override
